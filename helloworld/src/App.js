@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 // import my component file 
 import Person from "./Person/Person";
@@ -11,7 +11,7 @@ class App extends Component{
       {name:"Max", age: 32},
       {name:"Andy", age: 25}
     ],
-    showPersons: true
+    showPersons: false
   }
 
 
@@ -27,6 +27,9 @@ class App extends Component{
 
   togglePersonsHandler = () =>{
 
+    this.setState({
+      showPersons: !this.state.showPersons
+    })
   }
 
   nameChangedHandler = event =>{
@@ -43,8 +46,9 @@ class App extends Component{
     return(
       <div className="App">
         <h1>Hello, i am a react app</h1>
-        <button onClick={()=> togglePersonsHandler()}>Switch name</button>
-        <div>
+        <button onClick={()=> this.togglePersonsHandler()}>Switch name</button>
+        {this.state.showPersons? 
+        <div  >
           <Person 
             name = {this.state.persons[0].name} 
             age = {this.state.persons[0].age}
@@ -60,7 +64,8 @@ class App extends Component{
             name = {this.state.persons[2].name} 
             age = {this.state.persons[2].age}
           />
-        </div>
+        </div>: null
+        }
       </div>
   )};
 
