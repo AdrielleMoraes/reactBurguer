@@ -57,7 +57,9 @@ class App extends Component{
 
    render (){
       const style ={
-         color: "Black"
+         color: "Black",
+         cursor: "pointer",
+         backgroundColor: "red"
       }
 
 
@@ -78,10 +80,11 @@ class App extends Component{
       );	
    }
 
+
    return(
 		<div className="App">
 			<h1>Hello, i am a react app</h1>
-			<button style={style} onClick={()=> this.togglePersonsHandler()}>Toggle name</button>
+			<button style={this.state.showPersons?style:null} onClick={()=> this.togglePersonsHandler()}>Toggle name</button>
 			{persons}
 
 		</div>
