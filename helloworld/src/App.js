@@ -3,9 +3,6 @@ import './App.css';
 // import my component file 
 import Person from "./Person/Person";
 
-//css wrapper
-import Radium, {StyleRoot} from "radium";
-
 
 class App extends Component{
 
@@ -58,6 +55,8 @@ class App extends Component{
       this.setState({ persons:persons });
    }
 
+
+
    render (){
       const style ={
          color: "white",
@@ -70,50 +69,47 @@ class App extends Component{
          }
       }
 
+      let persons = null
+      if (this.state.showPersons){
+         persons = (
+            <div>
+               {this.state.persons.map((person, index) =>{
+                  return <Person 
+                              changed = {(event)=>this.nameChangedHandler(event, person.id)}
+                              click ={()=>this.deletePersonHandler(index)}
+                              name = {person.name}
+                              age = {person.age}
+                              key = {person.id}
+                        />
+               })}
+            </div>
+         );	
 
-   let persons = null
-   if (this.state.showPersons){
-      persons = (
-         <StyleRoot>
-         <div  >
-            {this.state.persons.map((person, index) =>{
-					return <Person 
-									changed = {(event)=>this.nameChangedHandler(event, person.id)}
-                           click ={()=>this.deletePersonHandler(index)}
-                           name = {person.name}
-									age = {person.age}
-									key = {person.id}
-                     />
-            })}
-         </div>
-         </StyleRoot>
-      );	
-
-      //change button style
-      style.backgroundColor = "red"
-      style[":hover"] = {
-         backgroundColor: "salmon"
+         //change button style
+         style.backgroundColor = "red"
+         style[":hover"] = {
+            backgroundColor: "salmon"
+         }
       }
-   }
 
-   // join both classes together
-   let classes = [];
-   if(this.state.persons.length <= 2){
-      classes.push("red");
-   }
-   if(this.state.persons.length <= 1){
-      classes.push("bold");
-   }
-   classes = classes.join(" ");
-   return(
-		<div className="App">
-			<h1 className={classes}>Hello, i am a react app</h1>
-			<button style={style} onClick={()=> this.togglePersonsHandler()}>Toggle name</button>
-			{persons}
+      // join both classes together
+      let classes = [];
+      if(this.state.persons.length <= 2){
+         classes.push("red");
+      }
+      if(this.state.persons.length <= 1){
+         classes.push("bold");
+      }
+      classes = classes.join(" ");
+      return(
+         <div className="App">
+            <h1 className={classes}>Hello, i am a react app</h1>
+            <button style={style} onClick={()=> this.togglePersonsHandler()}>Toggle name</button>
+            {persons}
 
-		</div>
-   )}
+         </div>
+      )}
 }
 
-export default Radium(App);
+export default App;
 
