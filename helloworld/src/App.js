@@ -3,6 +3,9 @@ import './App.css';
 // import my component file 
 import Person from "./Person/Person";
 
+//css styling
+import styled from "styled-components";
+
 
 class App extends Component{
 
@@ -55,19 +58,20 @@ class App extends Component{
       this.setState({ persons:persons });
    }
 
-
-
    render (){
-      const style ={
-         color: "white",
-         border: "1px solid blue",
-         padding:"8px",
-         cursor: "pointer",
-         backgroundColor: "green",
-         ":hover": {
-            backgroundColor: "lightgreen"
-         }
+
+      //styled button
+      const StyledButton = styled.button`
+      color: white;
+      border: 1px solid blue;
+      padding:8px;
+      cursor: pointer;
+      background-color: ${props => props.alt? "red":"green"};
+
+      &:hover {
+         background-color: ${props => props.alt? "salmon":"lightgreen"}
       }
+      `;
 
       let persons = null
       if (this.state.showPersons){
@@ -84,12 +88,6 @@ class App extends Component{
                })}
             </div>
          );	
-
-         //change button style
-         style.backgroundColor = "red"
-         style[":hover"] = {
-            backgroundColor: "salmon"
-         }
       }
 
       // join both classes together
@@ -104,7 +102,7 @@ class App extends Component{
       return(
          <div className="App">
             <h1 className={classes}>Hello, i am a react app</h1>
-            <button style={style} onClick={()=> this.togglePersonsHandler()}>Toggle name</button>
+            <StyledButton alt={this.state.showPersons} onClick={()=> this.togglePersonsHandler()}>Toggle name</StyledButton>
             {persons}
 
          </div>
