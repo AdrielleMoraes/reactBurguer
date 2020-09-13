@@ -4,6 +4,7 @@ import classes from './App.css';
 import Person from "./Person/Person";
 
 
+
 class App extends Component{
 
    state = {
@@ -68,8 +69,8 @@ class App extends Component{
                               changed = {(event)=>this.nameChangedHandler(event, person.id)}
                               click ={()=>this.deletePersonHandler(index)}
                               name = {person.name}
-                              age = {person.age}
-                              key = {person.id}
+                              age = {person.age}  
+                              key = {person.id}  
                         />
                })}
             </div>
