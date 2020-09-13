@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 // import my component file 
 import Person from "./Person/Person";
-
-//css styling
-import styled from "styled-components";
 
 
 class App extends Component{
@@ -59,22 +56,11 @@ class App extends Component{
    }
 
    render (){
-
-      //styled button
-      const StyledButton = styled.button`
-      color: white;
-      border: 1px solid blue;
-      padding:8px;
-      cursor: pointer;
-      background-color: ${props => props.alt? "red":"green"};
-
-      &:hover {
-         background-color: ${props => props.alt? "salmon":"lightgreen"}
-      }
-      `;
-
+      let styleButton = []
       let persons = null
       if (this.state.showPersons){
+         //change button style
+         styleButton.push(classes.red)
          persons = (
             <div>
                {this.state.persons.map((person, index) =>{
@@ -91,18 +77,18 @@ class App extends Component{
       }
 
       // join both classes together
-      let classes = [];
+      let styleClasses = [];
       if(this.state.persons.length <= 2){
-         classes.push("red");
+         styleClasses.push(classes.red);
       }
       if(this.state.persons.length <= 1){
-         classes.push("bold");
+         styleClasses.push(classes.bold);
       }
-      classes = classes.join(" ");
+
       return(
-         <div className="App">
-            <h1 className={classes}>Hello, i am a react app</h1>
-            <StyledButton alt={this.state.showPersons} onClick={()=> this.togglePersonsHandler()}>Toggle name</StyledButton>
+         <div className={classes.App}>
+            <h1 className={styleClasses.join(" ")}>Hello, i am a react app</h1>
+            <button className={styleButton.join("")} onClick={()=> this.togglePersonsHandler()}>Toggle name</button>
             {persons}
 
          </div>
