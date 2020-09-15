@@ -1,0 +1,31 @@
+import React from "react";
+import classes from "./Cockpits.css"
+
+const Cockpit = (props) => {
+
+   // join both classes together
+   let styleClasses = [];
+
+   let styleButton = [];
+
+   // change button when toggling persons
+   if(props.showPersons){
+      //change button style
+      styleButton.push(classes.red)
+   }
+
+   if(props.persons.length <= 2){
+      styleClasses.push(classes.Red);
+   }
+   if(props.persons.length <= 1){
+      styleClasses.push(classes.Bold);
+   }
+
+   return(
+      <div className={classes.Cockpit}>
+         <h1 className={styleClasses.join(" ")}>Hello, i am a react app</h1>
+         <button className={styleButton.join(" ")} onClick={props.clicked}>Toggle name</button>
+      </div>
+   )
+}
+export default Cockpit;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 // import my component file 
-import Person from "../Components/Persons/Person/Person";
+import Persons from "../Components/Persons/Persons"
+import Cockpit from "../Components/Cockpits/Cockpits"
 
 
 
@@ -57,41 +58,29 @@ class App extends Component{
    }
 
    render (){
-      let styleButton = []
+
       let persons = null
+
       if (this.state.showPersons){
-         //change button style
-         styleButton.push(classes.red)
          persons = (
             <div>
-               {this.state.persons.map((person, index) =>{
-                  return <Person 
-                              changed = {(event)=>this.nameChangedHandler(event, person.id)}
-                              click ={()=>this.deletePersonHandler(index)}
-                              name = {person.name}
-                              age = {person.age}  
-                              key = {person.id}  
-                        />
-               })}
+               <Persons 
+                  persons = {this.state.persons}
+                  clicked = {this.deletePersonHandler}
+                  changed = {this.nameChangedHandler}
+               ></Persons>
             </div>
          );	
       }
 
-      // join both classes together
-      let styleClasses = [];
-      if(this.state.persons.length <= 2){
-         styleClasses.push(classes.red);
-      }
-      if(this.state.persons.length <= 1){
-         styleClasses.push(classes.bold);
-      }
-
       return(
          <div className={classes.App}>
-            <h1 className={styleClasses.join(" ")}>Hello, i am a react app</h1>
-            <button className={styleButton.join("")} onClick={()=> this.togglePersonsHandler()}>Toggle name</button>
+            <Cockpit
+               persons = {this.state.persons}
+               showPersons = {this.state.showPersons}
+               clicked = {this.togglePersonsHandler}
+            />
             {persons}
-
          </div>
       )}
 }
