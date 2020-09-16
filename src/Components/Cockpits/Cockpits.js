@@ -23,7 +23,7 @@ const Cockpit = (props) => {
 
    return(
       <div className={classes.Cockpit}>
-         <h1 className={styleClasses.join(" ")}>Hello, i am a react app</h1>
+         <h1 className={styleClasses.join(" ")}>{props.title}</h1>
          <button className={styleButton.join(" ")} onClick={props.clicked}>Toggle name</button>
       </div>
    )
