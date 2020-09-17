@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect} from "react";
 import classes from "./Cockpits.css"
 
 const Cockpit = (props) => {
 
+   useEffect(()=>{
+      console.log("Use effect on [cockpit.js]");
+   })
    // join both classes together
    let styleClasses = [];
 
