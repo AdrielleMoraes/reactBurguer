@@ -5,7 +5,7 @@ const Cockpit = (props) => {
 
    useEffect(()=>{
       console.log("Use effect on [cockpit.js]");
-   })
+   }, [props.persons]) // use this  only when persons change
    // join both classes together
    let styleClasses = [];
 
