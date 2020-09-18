@@ -5,7 +5,7 @@ const Cockpit = (props) => {
 
    useEffect(()=>{
       console.log("Use effect on [cockpit.js]");
-   }, [props.persons]) // use this  only when persons change
+   }) // use this  only when persons change
    // join both classes together
    let styleClasses = [];
 
@@ -17,10 +17,10 @@ const Cockpit = (props) => {
       styleButton.push(classes.red)
    }
 
-   if(props.persons.length <= 2){
+   if(props.personsLength <= 2){
       styleClasses.push(classes.Red);
    }
-   if(props.persons.length <= 1){
+   if(props.personsLength <= 1){
       styleClasses.push(classes.Bold);
    }
 
@@ -31,4 +31,6 @@ const Cockpit = (props) => {
       </div>
    )
 }
-export default Cockpit;
+
+//memo: will re render only if it changes
+export default React.memo(Cockpit);
