@@ -4,7 +4,7 @@ import classes from "./Cockpits.css"
 const Cockpit = (props) => {
 
    useEffect(()=>{
-      console.log("Use effect on [cockpit.js]");
+      console.log("Use effect on file [cockpit.js]");
    }) // use this  only when persons change
    // join both classes together
    let styleClasses = [];
