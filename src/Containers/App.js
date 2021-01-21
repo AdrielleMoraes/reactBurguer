@@ -4,6 +4,8 @@ import classes from './App.css';
 import Persons from "../Components/Persons/Persons"
 import Cockpit from "../Components/Cockpits/Cockpits"
 
+import withClass from "../hoc/withClass"
+
 
 
 class App extends Component{
@@ -86,5 +88,5 @@ class App extends Component{
       )}
 }
 
-export default App;
+export default withClass(App, classes.App);
 

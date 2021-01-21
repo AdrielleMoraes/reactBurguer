@@ -2,6 +2,8 @@
 import React from "react";
 import './Person.css';
 
+import Aux from "../../../hoc/Auxiliar";
+
 //css 
 import styled from "styled-components";
 
@@ -23,12 +25,12 @@ const StyledDiv = styled.div`
 const person = (props) =>{
 
     return(  
-    <StyledDiv>
+    <Aux>
         <p >I'm {props.name} and I am  years {props.age} old!</p>
         <p>{props.children}</p>
         <input type="text" onChange={props.changed} value={props.name}></input>
         <p onClick= {props.click}>delete</p>
-    </StyledDiv>);
+    </Aux>);
 }
 
 
