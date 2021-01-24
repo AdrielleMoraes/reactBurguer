@@ -1,11 +1,19 @@
 import React, { useEffect} from "react";
 import classes from "./Cockpits.css"
 
-const Cockpit = (props) => {
+const cockpit = (props) => {
 
+   const toggleBtnRef = React.createRef();
+   
    useEffect(()=>{
-      console.log("Use effect on file [cockpit.js]");
+      
+      toggleBtnRef.current.focus();
+
+      return()=>{
+         console.log("Use effect on file [cockpit.js]");
+      }
    }) // use this  only when persons change
+   
    // join both classes together
    let styleClasses = [];
 
@@ -27,10 +35,14 @@ const Cockpit = (props) => {
    return(
       <div className={classes.Cockpit}>
          <h1 className={styleClasses.join(" ")}>{props.title}</h1>
-         <button className={styleButton.join(" ")} onClick={props.clicked}>Toggle name</button>
+         <button className={styleButton.join(" ")} 
+            ref = {toggleBtnRef}
+            onClick={props.clicked}>Toggle name
+            
+         </button>
       </div>
    )
 }
 
 //memo: will re render only if it changes
-export default React.memo(Cockpit);
+export default React.memo(cockpit);
