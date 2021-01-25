@@ -1,5 +1,5 @@
 // import react 
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import './Person.css';
 import Proptypes from "prop-types";
 
@@ -13,7 +13,7 @@ import classes from "./Person.css";
 // create a person component
 const person = (props) =>{
 
-    const inputElementRef = React.createRef();
+    const inputElementRef = useRef(null);
     useEffect(()=>
     {
         // this.inputElement.focus();
@@ -25,7 +25,7 @@ const person = (props) =>{
         <p >I'm {props.name} and I am  years {props.age} old!</p>
         <p>{props.children}</p>
         <input type="text" 
-                // ref = {(inputelm)=>{this.inputElement = inputelm}}
+                
                 ref={inputElementRef}
                 onChange={props.changed}    
                 value={props.name}>

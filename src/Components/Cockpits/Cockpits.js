@@ -1,17 +1,14 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useRef} from "react";
 import classes from "./Cockpits.css"
 
 const cockpit = (props) => {
 
-   const toggleBtnRef = React.createRef();
+   const toggleBtnRef = useRef(null);
    
    useEffect(()=>{
       
       toggleBtnRef.current.focus();
-
-      return()=>{
-         console.log("Use effect on file [cockpit.js]");
-      }
+      console.log("Use effect on file [cockpit.js]");
    }) // use this  only when persons change
    
    // join both classes together
