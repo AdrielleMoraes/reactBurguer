@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from "./BurgerIngredient"
+import classes from "./BurgerIngredient.css"
 import PropTypes from "prop-types"
 
 const BurgerIngredient = (props) => {
@@ -11,7 +11,7 @@ const BurgerIngredient = (props) => {
             break
 
         case "bread-top":
-            ingredient = (<div className={classes.BreadBottom}>
+            ingredient = (<div className={classes.BreadTop}>
                             <div className={classes.Seed1}></div>
                             <div className={classes.Seed2}></div>
                           </div>)
