@@ -67,11 +67,12 @@ class BurgerBuilder extends Component
         for (let key in disabledInfo){
             disabledInfo[key]  = disabledInfo[key] <= 0
         }
-        console.log(disabledInfo)
         return(
             <Auxiliar>
                 <Burger ingredients= {this.state.ingredients}/>
                 <BuildControls 
+                    price = {this.state.total_price}
+                    ingredient
                     addIngredient={this.addIngredientHandler} 
                     removeIngredient={this.removeIngredient}
                     disableRemove = {disabledInfo}/>
