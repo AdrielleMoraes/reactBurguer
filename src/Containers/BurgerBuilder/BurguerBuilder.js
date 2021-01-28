@@ -22,9 +22,19 @@ class BurgerBuilder extends Component
             bacon: 0,
             meat: 0
         },
-        total_price: BASE_PRICE
+        total_price: BASE_PRICE,
+        purchaseable: false,
     }
 
+    updateOrder = (ingredients)=>{
+       const total_ingredients = Object.keys(ingredients).map(igKey =>{
+            return(ingredients[igKey])
+        }).reduce((arr,curr)=>{
+            return arr + curr
+        },0)
+
+        return total_ingredients > 0
+    }
     addIngredientHandler = (ingredient)=>{
         //get previous value for that ingredient
         const oldCount = this.state.ingredients[ingredient]
@@ -37,8 +47,10 @@ class BurgerBuilder extends Component
         //calculate new total price
         const newPrice = this.state.total_price + INGREDIENTS_PRICE[ingredient]
 
+        const purch = this.updateOrder(newIngredients)
         //update state
-        this.setState({ingredients: newIngredients,total_price: newPrice})
+        this.setState({ingredients: newIngredients,total_price: newPrice, purchaseable: purch})
+
     }
 
     removeIngredient = (ingredient)=>{
@@ -57,9 +69,11 @@ class BurgerBuilder extends Component
         //calculate new total price
         const newPrice = this.state.total_price - INGREDIENTS_PRICE[ingredient]
 
+        const purch = this.updateOrder(newIngredients)
         //update state
-        this.setState({ingredients: newIngredients,total_price: newPrice})
+        this.setState({ingredients: newIngredients,total_price: newPrice, purchaseable: purch})
     }
+
     render(){
 
         //use this to enable or disable the "remove ingredient" button
@@ -67,6 +81,7 @@ class BurgerBuilder extends Component
         for (let key in disabledInfo){
             disabledInfo[key]  = disabledInfo[key] <= 0
         }
+
         return(
             <Auxiliar>
                 <Burger ingredients= {this.state.ingredients}/>
@@ -75,7 +90,8 @@ class BurgerBuilder extends Component
                     ingredient
                     addIngredient={this.addIngredientHandler} 
                     removeIngredient={this.removeIngredient}
-                    disableRemove = {disabledInfo}/>
+                    disableRemove = {disabledInfo}
+                    purchaseable = {!this.state.purchaseable}/>
             </Auxiliar>
         );
     }
