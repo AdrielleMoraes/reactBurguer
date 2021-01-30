@@ -82,6 +82,10 @@ class BurgerBuilder extends Component
         this.setState({showSummary: true})
     }
 
+    onClickBackDrop = () =>{
+        this.setState({showSummary:false})
+    }
+
     render(){
 
         //use this to enable or disable the "remove ingredient" button
@@ -93,7 +97,7 @@ class BurgerBuilder extends Component
         return(
             <Auxiliar>
                 <Burger ingredients= {this.state.ingredients}/>
-                <Modal show= {this.state.showSummary}>
+                <Modal onClickBackDrop={this.onClickBackDrop} show= {this.state.showSummary}>
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <BuildControls 
