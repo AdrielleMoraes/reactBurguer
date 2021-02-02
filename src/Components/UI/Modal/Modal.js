@@ -8,7 +8,8 @@ const Modal = (props) => {
         <Auxiliar>
             <BackDrop show={props.show} onClickBackDrop={()=> props.btnCancel()}></BackDrop>
             <div style={{transform: props.show? "translateY(0)": "translateY(-100)",
-                        opacity: props.show? "1":"0"}} className={classes.Modal}>
+                        opacity: props.show? "1":"0",
+                        display:props.show?"block":"none"}} className={classes.Modal}>
                 {props.children}
             </div>
         </Auxiliar>
