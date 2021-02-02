@@ -82,8 +82,12 @@ class BurgerBuilder extends Component
         this.setState({showSummary: true})
     }
 
-    onClickBackDrop = () =>{
+    purchaseCancelHandler = () =>{
         this.setState({showSummary:false})
+    }
+
+    purchaseContinueHandler = ()=>{
+        alert("You have continued")
     }
 
     render(){
@@ -97,11 +101,15 @@ class BurgerBuilder extends Component
         return(
             <Auxiliar>
                 <Burger ingredients= {this.state.ingredients}/>
-                <Modal onClickBackDrop={this.onClickBackDrop} show= {this.state.showSummary}>
-                    <OrderSummary ingredients={this.state.ingredients} />
+                <Modal btnCancel={this.purchaseCancelHandler} show= {this.state.showSummary}>
+                    <OrderSummary 
+                        ingredients={this.state.ingredients} 
+                        btnContinue={this.purchaseContinueHandler} 
+                        btnCancel={this.purchaseCancelHandler} 
+                        totalPrice={this.state.total_price.toFixed(2)}/>
                 </Modal>
                 <BuildControls 
-                    price = {this.state.total_price}
+                    price = {this.state.total_price.toFixed(2)}
                     ingredient
                     addIngredient={this.addIngredientHandler} 
                     removeIngredient={this.removeIngredient}
