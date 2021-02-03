@@ -6,7 +6,7 @@ const NavigationItems = (props) => {
 
     return(<ul className={classes.NavigationItems}>
         <NavigationItem link="/" active>Burguer Builder</NavigationItem>
-        <NavigationItem link="/">Checkout</NavigationItem>
+        <NavigationItem link="/">Go to Checkout</NavigationItem>
     </ul>)
 }
 
